@@ -1,0 +1,21 @@
+---
+// Centered section title with a short CertaPro-yellow bar underneath.
+
+interface Props {
+  title: string;
+  sub?: string;
+  eyebrow?: string;
+  align?: 'center' | 'left';
+  tone?: 'light' | 'dark';
+  as?: 'h1' | 'h2';
+}
+const { title, sub, eyebrow, align = 'center', tone = 'light', as: Tag = 'h2' } = Astro.props;
+const center = align === 'center';
+---
+
+<div class:list={['section-head', center ? 'mx-auto max-w-[46rem] text-center' : 'max-w-[40rem]']}>
+  {eyebrow && <p class:list={['reveal eyebrow mb-3', tone === 'dark' ? 'text-primary' : 'text-muted']}>{eyebrow}</p>}
+  <Tag class:list={['reveal h2', tone === 'dark' && '!text-paper']}>{title}</Tag>
+  <span class:list={['divider reveal mt-5 block h-1 w-16 bg-primary', center && 'mx-auto']} aria-hidden="true"></span>
+  {sub && <p class:list={['reveal mt-5', tone === 'dark' ? 'text-paper/85' : 'text-body']}>{sub}</p>}
+</div>

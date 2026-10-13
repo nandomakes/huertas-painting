@@ -1,0 +1,43 @@
+---
+// Paris "Our Simple 4-Step Process" structure in CertaPro's process style:
+// a dark photo band with white outlined circle icons and white titles.
+import { Picture } from 'astro:assets';
+import { PROCESS, BACKGROUNDS } from '../consts';
+import Icon from './Icon.astro';
+
+interface Props {
+  tone?: 'paper' | 'surface';
+}
+const icons = ['calendar', 'clipboard', 'roller', 'thumbUp'];
+---
+
+<section id="process" class="process relative overflow-hidden bg-secondary text-paper">
+  <div class="absolute inset-0" aria-hidden="true">
+    <Picture src={BACKGROUNDS.services} alt="" formats={['avif', 'webp']} widths={[960, 1600, 2400]} sizes="100vw" loading="lazy" class="h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-secondary/85"></div>
+  </div>
+  <div class="wrap section relative">
+    <div class="mx-auto max-w-[46rem] text-center">
+      <h2 class="reveal h2 !text-paper">Our Simple 4-Step Process</h2>
+      <span class="reveal mx-auto mt-5 block h-1 w-16 bg-primary" aria-hidden="true"></span>
+      <p class="reveal mt-5 text-paper/85">
+        From the first call to the final walkthrough, your home is treated with the care it deserves.
+      </p>
+    </div>
+    <ol class="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      {
+        PROCESS.map((p, i) => (
+          <li class="reveal text-center">
+            <span class="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-[3px] border-paper" aria-hidden="true">
+              <Icon name={icons[i] ?? 'check'} size={36} stroke={1.8} />
+            </span>
+            <h3 class="h3 mt-5">
+              <span class="text-primary">{i + 1}.</span> {p.title}
+            </h3>
+            <p class="mt-3 text-[0.95rem] leading-[1.65] text-paper/80">{p.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
