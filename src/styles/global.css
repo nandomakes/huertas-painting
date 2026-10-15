@@ -300,11 +300,6 @@
     transform: rotate(135deg);
   }
 
-  /* Review cards on the reference are flat light-gray panels. */
-  .review-card {
-    background: #f8f8f8;
-    box-shadow: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -321,5 +316,18 @@
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  /* Trust bar icon: CertaPro's round yellow badge with a charcoal icon. */
+  .trust-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: theme('colors.primary');
+    color: theme('colors.secondary');
   }
 }
